@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -27,20 +26,9 @@ public class WbShortNeedController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<WbShortNeedResponseDto> getWbShortNeedById(@PathVariable Long id) {
-        WbShortNeedResponseDto response = wbShortNeedService.getWbShortNeedById(id);
-        return ResponseEntity.ok(response);
-    }
-
-    @GetMapping("/composite")
-    public ResponseEntity<WbShortNeedResponseDto> getWbShortNeedByCompositeKey(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate createdDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime receiveTime,
-            @RequestParam String securityCode,
-            @RequestParam String settlementDate) {
-        WbShortNeedResponseDto response = wbShortNeedService.getWbShortNeedByCompositeKey(
-                createdDate, receiveTime, securityCode, settlementDate);
+    @GetMapping("/{correlationId}")
+    public ResponseEntity<WbShortNeedResponseDto> getWbShortNeedByCorrelationId(@PathVariable String correlationId) {
+        WbShortNeedResponseDto response = wbShortNeedService.getWbShortNeedByCorrelationId(correlationId);
         return ResponseEntity.ok(response);
     }
 
@@ -76,16 +64,16 @@ public class WbShortNeedController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{correlationId}")
     public ResponseEntity<WbShortNeedResponseDto> updateWbShortNeed(
-            @PathVariable Long id, @Valid @RequestBody WbShortNeedRequestDto dto) {
-        WbShortNeedResponseDto response = wbShortNeedService.updateWbShortNeed(id, dto);
+            @PathVariable String correlationId, @Valid @RequestBody WbShortNeedRequestDto dto) {
+        WbShortNeedResponseDto response = wbShortNeedService.updateWbShortNeed(correlationId, dto);
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteWbShortNeed(@PathVariable Long id) {
-        wbShortNeedService.deleteWbShortNeed(id);
+    @DeleteMapping("/{correlationId}")
+    public ResponseEntity<Void> deleteWbShortNeed(@PathVariable String correlationId) {
+        wbShortNeedService.deleteWbShortNeed(correlationId);
         return ResponseEntity.noContent().build();
     }
 } 

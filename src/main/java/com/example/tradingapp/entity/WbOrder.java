@@ -5,12 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "WB_ORDER", schema = "APP")
+@Table(name = "WB_ORDER")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,17 +28,11 @@ public class WbOrder {
     @Column(name = "OrderGroupID", nullable = false)
     private Long orderGroupId;
 
-    @Column(name = "CreatedDate", nullable = false)
-    private LocalDate createdDate;
+    @Column(name = "CorrelationID", nullable = false, length = 255)
+    private String correlationId;
 
-    @Column(name = "ReceiveTime", nullable = false)
-    private LocalDateTime receiveTime;
-
-    @Column(name = "SecurityCode", nullable = false, length = 255)
-    private String securityCode;
-
-    @Column(name = "SettlementDate", nullable = false)
-    private String settlementDate;
+    @Column(name = "FillQuantity", precision = 20, scale = 2)
+    private BigDecimal fillQuantity;
 
     // Many-to-One relationship with WbOrderGroup
     @ManyToOne(fetch = FetchType.LAZY)
@@ -46,12 +41,7 @@ public class WbOrder {
 
     // Many-to-One relationship with WbShortNeed
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(name = "CreatedDate", referencedColumnName = "CreatedDate", insertable = false, updatable = false),
-        @JoinColumn(name = "ReceiveTime", referencedColumnName = "ReceiveTime", insertable = false, updatable = false),
-        @JoinColumn(name = "SecurityCode", referencedColumnName = "SecurityCode", insertable = false, updatable = false),
-        @JoinColumn(name = "SettlementDate", referencedColumnName = "SettlementDate", insertable = false, updatable = false)
-    })
+    @JoinColumn(name = "CorrelationID", referencedColumnName = "CorrelationID", insertable = false, updatable = false)
     private WbShortNeed wbShortNeed;
 
     // One-to-Many relationship with WbBid

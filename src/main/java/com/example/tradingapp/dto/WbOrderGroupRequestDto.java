@@ -30,4 +30,7 @@ public class WbOrderGroupRequestDto {
     @NotNull(message = "Number of markets selected is required")
     @Min(value = 0, message = "Number of markets selected must be non-negative")
     private Long numberOfMarketsSelected;
+
+    @NotBlank(message = "Bid option is required")
+    private String bidOption;
 } 

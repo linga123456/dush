@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class WbShortNeedResponseDto {
 
+    private String correlationId;
     private Long id;
     private LocalDate createdDate;
     private LocalDateTime receiveTime;
@@ -25,4 +26,10 @@ public class WbShortNeedResponseDto {
     private BigDecimal quantity;
     private String divStrategy;
     private String isManual;
+    private BigDecimal pthQty;
+    private BigDecimal etfQuantoQty;
+    private BigDecimal collateralRecallQty;
+    private BigDecimal adjustedQty;
+    private BigDecimal washQty;
+    private String pmid;
 } 

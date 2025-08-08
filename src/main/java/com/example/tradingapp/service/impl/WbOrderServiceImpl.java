@@ -29,14 +29,6 @@ public class WbOrderServiceImpl implements WbOrderService {
 
     @Override
     @Transactional(readOnly = true)
-    public WbOrderResponseDto getWbOrderById(Long id) {
-        WbOrder wbOrder = wbOrderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("WbOrder not found with id: " + id));
-        return wbOrderMapper.toDto(wbOrder);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
     public WbOrderResponseDto getWbOrderByOrderId(Long orderId) {
         WbOrder wbOrder = wbOrderRepository.findByOrderId(orderId)
                 .orElseThrow(() -> new RuntimeException("WbOrder not found with orderId: " + orderId));
@@ -59,15 +51,15 @@ public class WbOrderServiceImpl implements WbOrderService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<WbOrderResponseDto> getWbOrdersBySecurityCode(String securityCode) {
-        List<WbOrder> wbOrders = wbOrderRepository.findBySecurityCode(securityCode);
+    public List<WbOrderResponseDto> getWbOrdersByCorrelationId(String correlationId) {
+        List<WbOrder> wbOrders = wbOrderRepository.findByCorrelationId(correlationId);
         return wbOrderMapper.toDtoList(wbOrders);
     }
 
     @Override
-    public WbOrderResponseDto updateWbOrder(Long id, WbOrderRequestDto dto) {
-        WbOrder existingWbOrder = wbOrderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("WbOrder not found with id: " + id));
+    public WbOrderResponseDto updateWbOrder(Long orderId, WbOrderRequestDto dto) {
+        WbOrder existingWbOrder = wbOrderRepository.findByOrderId(orderId)
+                .orElseThrow(() -> new RuntimeException("WbOrder not found with orderId: " + orderId));
         
         WbOrder updatedWbOrder = wbOrderMapper.toEntity(dto);
         updatedWbOrder.setId(existingWbOrder.getId());
@@ -77,10 +69,9 @@ public class WbOrderServiceImpl implements WbOrderService {
     }
 
     @Override
-    public void deleteWbOrder(Long id) {
-        if (!wbOrderRepository.existsById(id)) {
-            throw new RuntimeException("WbOrder not found with id: " + id);
-        }
-        wbOrderRepository.deleteById(id);
+    public void deleteWbOrder(Long orderId) {
+        WbOrder wbOrder = wbOrderRepository.findByOrderId(orderId)
+                .orElseThrow(() -> new RuntimeException("WbOrder not found with orderId: " + orderId));
+        wbOrderRepository.delete(wbOrder);
     }
 } 

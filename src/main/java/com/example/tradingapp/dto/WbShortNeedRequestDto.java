@@ -16,6 +16,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class WbShortNeedRequestDto {
 
+    @NotBlank(message = "Correlation ID is required")
+    private String correlationId;
+
     @NotNull(message = "Created date is required")
     private LocalDate createdDate;
 
@@ -25,13 +28,13 @@ public class WbShortNeedRequestDto {
     @NotBlank(message = "Security code is required")
     private String securityCode;
 
-    @NotNull(message = "Settlement date is required")
+    @NotBlank(message = "Settlement date is required")
     private String settlementDate;
 
     @NotBlank(message = "Need type is required")
     private String needType;
 
-    @NotNull(message = "Run time is required")
+    @NotBlank(message = "Run time is required")
     private String runTime;
 
     @NotBlank(message = "Partial flag is required")
@@ -49,4 +52,16 @@ public class WbShortNeedRequestDto {
 
     @NotBlank(message = "Is manual flag is required")
     private String isManual;
+
+    private BigDecimal pthQty;
+
+    private BigDecimal etfQuantoQty;
+
+    private BigDecimal collateralRecallQty;
+
+    private BigDecimal adjustedQty;
+
+    private BigDecimal washQty;
+
+    private String pmid;
 } 

@@ -14,7 +14,6 @@ public interface WbBidMapper {
 
     WbBidMapper INSTANCE = Mappers.getMapper(WbBidMapper.class);
 
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "wbOrder", ignore = true)
     @Mapping(target = "wbOrderGroup", ignore = true)
     @Mapping(target = "wbShortNeed", ignore = true)

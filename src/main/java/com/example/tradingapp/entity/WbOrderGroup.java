@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "WB_ORDER_GROUP", schema = "APP")
+@Table(name = "WB_ORDER_GROUP")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,12 +28,15 @@ public class WbOrderGroup {
     @Column(name = "NumberOfShortsSelected", nullable = false)
     private Long numberOfShortsSelected;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "NumberOfMarketsSelected", nullable = false)
     private Long numberOfMarketsSelected;
+
+    @Column(name = "BidOption", nullable = false, length = 255)
+    private String bidOption;
 
     // One-to-Many relationship with WbOrder
     @OneToMany(mappedBy = "wbOrderGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

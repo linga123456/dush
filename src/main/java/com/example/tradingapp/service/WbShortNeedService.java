@@ -4,17 +4,13 @@ import com.example.tradingapp.dto.WbShortNeedRequestDto;
 import com.example.tradingapp.dto.WbShortNeedResponseDto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface WbShortNeedService {
 
     WbShortNeedResponseDto createWbShortNeed(WbShortNeedRequestDto dto);
 
-    WbShortNeedResponseDto getWbShortNeedById(Long id);
-
-    WbShortNeedResponseDto getWbShortNeedByCompositeKey(LocalDate createdDate, LocalDateTime receiveTime, 
-                                                       String securityCode, String settlementDate);
+    WbShortNeedResponseDto getWbShortNeedByCorrelationId(String correlationId);
 
     List<WbShortNeedResponseDto> getAllWbShortNeeds();
 
@@ -26,7 +22,7 @@ public interface WbShortNeedService {
 
     List<WbShortNeedResponseDto> getWbShortNeedsByNeedType(String needType);
 
-    WbShortNeedResponseDto updateWbShortNeed(Long id, WbShortNeedRequestDto dto);
+    WbShortNeedResponseDto updateWbShortNeed(String correlationId, WbShortNeedRequestDto dto);
 
-    void deleteWbShortNeed(Long id);
+    void deleteWbShortNeed(String correlationId);
 } 

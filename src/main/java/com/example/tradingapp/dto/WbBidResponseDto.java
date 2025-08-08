@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -41,8 +40,6 @@ public class WbBidResponseDto {
     private LocalDateTime dateStamp;
     private Long orderId;
     private Long orderGroupId;
-    private LocalDate createdDate;
-    private LocalDateTime receiveTime;
-    private String securityCode;
-    private String settlementDate;
+    private String correlationId;
+    private String rateIndicator;
 } 

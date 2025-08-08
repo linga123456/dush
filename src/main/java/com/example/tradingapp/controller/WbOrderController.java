@@ -24,12 +24,6 @@ public class WbOrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<WbOrderResponseDto> getWbOrderById(@PathVariable Long id) {
-        WbOrderResponseDto response = wbOrderService.getWbOrderById(id);
-        return ResponseEntity.ok(response);
-    }
-
     @GetMapping("/order/{orderId}")
     public ResponseEntity<WbOrderResponseDto> getWbOrderByOrderId(@PathVariable Long orderId) {
         WbOrderResponseDto response = wbOrderService.getWbOrderByOrderId(orderId);
@@ -48,22 +42,22 @@ public class WbOrderController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/security-code/{securityCode}")
-    public ResponseEntity<List<WbOrderResponseDto>> getWbOrdersBySecurityCode(@PathVariable String securityCode) {
-        List<WbOrderResponseDto> response = wbOrderService.getWbOrdersBySecurityCode(securityCode);
+    @GetMapping("/correlation/{correlationId}")
+    public ResponseEntity<List<WbOrderResponseDto>> getWbOrdersByCorrelationId(@PathVariable String correlationId) {
+        List<WbOrderResponseDto> response = wbOrderService.getWbOrdersByCorrelationId(correlationId);
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/order/{orderId}")
     public ResponseEntity<WbOrderResponseDto> updateWbOrder(
-            @PathVariable Long id, @Valid @RequestBody WbOrderRequestDto dto) {
-        WbOrderResponseDto response = wbOrderService.updateWbOrder(id, dto);
+            @PathVariable Long orderId, @Valid @RequestBody WbOrderRequestDto dto) {
+        WbOrderResponseDto response = wbOrderService.updateWbOrder(orderId, dto);
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteWbOrder(@PathVariable Long id) {
-        wbOrderService.deleteWbOrder(id);
+    @DeleteMapping("/order/{orderId}")
+    public ResponseEntity<Void> deleteWbOrder(@PathVariable Long orderId) {
+        wbOrderService.deleteWbOrder(orderId);
         return ResponseEntity.noContent().build();
     }
 } 

@@ -8,7 +8,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -39,12 +38,8 @@ public class WbBidRequestDto {
     @NotBlank(message = "Lender reference ID is required")
     private String lenderReferenceId;
 
-    @NotNull(message = "Rate is required")
-    @DecimalMin(value = "0.0", inclusive = false, message = "Rate must be greater than 0")
     private BigDecimal rate;
 
-    @NotNull(message = "Fee is required")
-    @DecimalMin(value = "0.0", inclusive = false, message = "Fee must be greater than 0")
     private BigDecimal fee;
 
     private String subAcct;
@@ -78,15 +73,8 @@ public class WbBidRequestDto {
     @NotNull(message = "Order group ID is required")
     private Long orderGroupId;
 
-    @NotNull(message = "Created date is required")
-    private LocalDate createdDate;
+    @NotBlank(message = "Correlation ID is required")
+    private String correlationId;
 
-    @NotNull(message = "Receive time is required")
-    private LocalDateTime receiveTime;
-
-    @NotBlank(message = "Security code is required")
-    private String securityCode;
-
-    @NotNull(message = "Settlement date is required")
-    private String settlementDate;
+    private String rateIndicator;
 } 

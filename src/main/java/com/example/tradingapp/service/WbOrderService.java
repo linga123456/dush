@@ -9,17 +9,15 @@ public interface WbOrderService {
 
     WbOrderResponseDto createWbOrder(WbOrderRequestDto dto);
 
-    WbOrderResponseDto getWbOrderById(Long id);
-
     WbOrderResponseDto getWbOrderByOrderId(Long orderId);
 
     List<WbOrderResponseDto> getAllWbOrders();
 
     List<WbOrderResponseDto> getWbOrdersByOrderGroupId(Long orderGroupId);
 
-    List<WbOrderResponseDto> getWbOrdersBySecurityCode(String securityCode);
+    List<WbOrderResponseDto> getWbOrdersByCorrelationId(String correlationId);
 
-    WbOrderResponseDto updateWbOrder(Long id, WbOrderRequestDto dto);
+    WbOrderResponseDto updateWbOrder(Long orderId, WbOrderRequestDto dto);
 
-    void deleteWbOrder(Long id);
+    void deleteWbOrder(Long orderId);
 } 

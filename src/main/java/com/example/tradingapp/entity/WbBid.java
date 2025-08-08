@@ -11,19 +11,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "WB_BID", schema = "APP")
+@Table(name = "WB_BID")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class WbBid {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
-
     @Column(name = "BidID", nullable = false, length = 255)
     private String bidId;
+
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "BatchID", nullable = false, length = 255)
     private String batchId;
@@ -40,7 +40,7 @@ public class WbBid {
     @Column(name = "EquilendID")
     private Long equilendId;
 
-    @Column(name = "QuantityFilled", precision = 10, scale = 2)
+    @Column(name = "QuantityFilled", precision = 20, scale = 2)
     private BigDecimal quantityFilled;
 
     @Column(name = "Status", length = 255)
@@ -58,19 +58,19 @@ public class WbBid {
     @Column(name = "LenderReferenceID", nullable = false, length = 255)
     private String lenderReferenceId;
 
-    @Column(name = "Rate", nullable = false, precision = 10, scale = 2)
+    @Column(name = "Rate", precision = 20, scale = 2)
     private BigDecimal rate;
 
-    @Column(name = "Fee", nullable = false, precision = 10, scale = 2)
+    @Column(name = "Fee", precision = 20, scale = 2)
     private BigDecimal fee;
 
     @Column(name = "SubAcct", length = 255)
     private String subAcct;
 
-    @Column(name = "ContractPrice", precision = 10, scale = 2)
+    @Column(name = "ContractPrice", precision = 20, scale = 2)
     private BigDecimal contractPrice;
 
-    @Column(name = "CollCashAmt", precision = 10, scale = 2)
+    @Column(name = "CollCashAmt", precision = 20, scale = 2)
     private BigDecimal collCashAmt;
 
     @Column(name = "CollCcy", length = 255)
@@ -103,17 +103,11 @@ public class WbBid {
     @Column(name = "OrderGroupID", nullable = false)
     private Long orderGroupId;
 
-    @Column(name = "CreatedDate", nullable = false)
-    private LocalDate createdDate;
+    @Column(name = "CorrelationID", nullable = false, length = 255)
+    private String correlationId;
 
-    @Column(name = "ReceiveTime", nullable = false)
-    private LocalDateTime receiveTime;
-
-    @Column(name = "SecurityCode", nullable = false, length = 255)
-    private String securityCode;
-
-    @Column(name = "SettlementDate", nullable = false)
-    private String settlementDate;
+    @Column(name = "RateIndicator", length = 10)
+    private String rateIndicator;
 
     // Many-to-One relationship with WbOrder
     @ManyToOne(fetch = FetchType.LAZY)
@@ -127,12 +121,7 @@ public class WbBid {
 
     // Many-to-One relationship with WbShortNeed
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(name = "CreatedDate", referencedColumnName = "CreatedDate", insertable = false, updatable = false),
-        @JoinColumn(name = "ReceiveTime", referencedColumnName = "ReceiveTime", insertable = false, updatable = false),
-        @JoinColumn(name = "SecurityCode", referencedColumnName = "SecurityCode", insertable = false, updatable = false),
-        @JoinColumn(name = "SettlementDate", referencedColumnName = "SettlementDate", insertable = false, updatable = false)
-    })
+    @JoinColumn(name = "CorrelationID", referencedColumnName = "CorrelationID", insertable = false, updatable = false)
     private WbShortNeed wbShortNeed;
 
     // One-to-Many relationship with WbFill

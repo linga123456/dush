@@ -14,7 +14,6 @@ public interface WbOrderGroupMapper {
 
     WbOrderGroupMapper INSTANCE = Mappers.getMapper(WbOrderGroupMapper.class);
 
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "orders", ignore = true)
     @Mapping(target = "bids", ignore = true)
     WbOrderGroup toEntity(WbOrderGroupRequestDto dto);

@@ -17,4 +17,5 @@ public class WbOrderGroupResponseDto {
     private Long numberOfShortsSelected;
     private Long id;
     private Long numberOfMarketsSelected;
+    private String bidOption;
 } 

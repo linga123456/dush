@@ -14,5 +14,5 @@ public interface WbOrderRepository extends JpaRepository<WbOrder, Long> {
 
     List<WbOrder> findByOrderGroupId(Long orderGroupId);
 
-    List<WbOrder> findBySecurityCode(String securityCode);
+    List<WbOrder> findByCorrelationId(String correlationId);
 } 

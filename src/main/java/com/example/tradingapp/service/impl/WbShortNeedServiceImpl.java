@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -31,18 +30,9 @@ public class WbShortNeedServiceImpl implements WbShortNeedService {
 
     @Override
     @Transactional(readOnly = true)
-    public WbShortNeedResponseDto getWbShortNeedById(Long id) {
-        WbShortNeed wbShortNeed = wbShortNeedRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("WbShortNeed not found with id: " + id));
-        return wbShortNeedMapper.toDto(wbShortNeed);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public WbShortNeedResponseDto getWbShortNeedByCompositeKey(LocalDate createdDate, LocalDateTime receiveTime, 
-                                                             String securityCode, String settlementDate) {
-        WbShortNeed wbShortNeed = wbShortNeedRepository.findByCompositeKey(createdDate, receiveTime, securityCode, settlementDate)
-                .orElseThrow(() -> new RuntimeException("WbShortNeed not found with composite key"));
+    public WbShortNeedResponseDto getWbShortNeedByCorrelationId(String correlationId) {
+        WbShortNeed wbShortNeed = wbShortNeedRepository.findById(correlationId)
+                .orElseThrow(() -> new RuntimeException("WbShortNeed not found with correlationId: " + correlationId));
         return wbShortNeedMapper.toDto(wbShortNeed);
     }
 
@@ -82,9 +72,9 @@ public class WbShortNeedServiceImpl implements WbShortNeedService {
     }
 
     @Override
-    public WbShortNeedResponseDto updateWbShortNeed(Long id, WbShortNeedRequestDto dto) {
-        WbShortNeed existingWbShortNeed = wbShortNeedRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("WbShortNeed not found with id: " + id));
+    public WbShortNeedResponseDto updateWbShortNeed(String correlationId, WbShortNeedRequestDto dto) {
+        WbShortNeed existingWbShortNeed = wbShortNeedRepository.findById(correlationId)
+                .orElseThrow(() -> new RuntimeException("WbShortNeed not found with correlationId: " + correlationId));
         
         WbShortNeed updatedWbShortNeed = wbShortNeedMapper.toEntity(dto);
         updatedWbShortNeed.setId(existingWbShortNeed.getId());
@@ -94,10 +84,10 @@ public class WbShortNeedServiceImpl implements WbShortNeedService {
     }
 
     @Override
-    public void deleteWbShortNeed(Long id) {
-        if (!wbShortNeedRepository.existsById(id)) {
-            throw new RuntimeException("WbShortNeed not found with id: " + id);
+    public void deleteWbShortNeed(String correlationId) {
+        if (!wbShortNeedRepository.existsById(correlationId)) {
+            throw new RuntimeException("WbShortNeed not found with correlationId: " + correlationId);
         }
-        wbShortNeedRepository.deleteById(id);
+        wbShortNeedRepository.deleteById(correlationId);
     }
 } 

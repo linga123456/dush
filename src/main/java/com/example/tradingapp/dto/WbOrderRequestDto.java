@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import javax.validation.constraints.DecimalMin;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -20,15 +20,9 @@ public class WbOrderRequestDto {
     @NotNull(message = "Order group ID is required")
     private Long orderGroupId;
 
-    @NotNull(message = "Created date is required")
-    private LocalDate createdDate;
+    @NotBlank(message = "Correlation ID is required")
+    private String correlationId;
 
-    @NotNull(message = "Receive time is required")
-    private LocalDateTime receiveTime;
-
-    @NotBlank(message = "Security code is required")
-    private String securityCode;
-
-    @NotNull(message = "Settlement date is required")
-    private String settlementDate;
+    @DecimalMin(value = "0.0", inclusive = false, message = "Fill quantity must be greater than 0")
+    private BigDecimal fillQuantity;
 } 

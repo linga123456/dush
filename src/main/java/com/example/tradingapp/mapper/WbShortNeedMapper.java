@@ -14,7 +14,6 @@ public interface WbShortNeedMapper {
 
     WbShortNeedMapper INSTANCE = Mappers.getMapper(WbShortNeedMapper.class);
 
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "orders", ignore = true)
     @Mapping(target = "bids", ignore = true)
     WbShortNeed toEntity(WbShortNeedRequestDto dto);

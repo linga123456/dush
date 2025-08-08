@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,13 +26,13 @@ public class WbShortNeedRequestDto {
     private String securityCode;
 
     @NotNull(message = "Settlement date is required")
-    private LocalDate settlementDate;
+    private String settlementDate;
 
     @NotBlank(message = "Need type is required")
     private String needType;
 
     @NotNull(message = "Run time is required")
-    private LocalDateTime runTime;
+    private String runTime;
 
     @NotBlank(message = "Partial flag is required")
     private String partialFlag;

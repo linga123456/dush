@@ -1,6 +1,6 @@
 package com.example.tradingapp.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,13 +33,13 @@ public class WbShortNeed {
     private String securityCode;
 
     @Column(name = "SettlementDate", nullable = false)
-    private LocalDate settlementDate;
+    private String settlementDate;
 
     @Column(name = "NeedType", nullable = false, length = 255)
     private String needType;
 
     @Column(name = "RunTime", nullable = false)
-    private LocalDateTime runTime;
+    private String runTime;
 
     @Column(name = "PartialFlag", nullable = false, length = 1)
     private String partialFlag;

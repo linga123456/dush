@@ -1,6 +1,6 @@
 package com.example.tradingapp.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,7 +37,7 @@ public class WbOrder {
     private String securityCode;
 
     @Column(name = "SettlementDate", nullable = false)
-    private LocalDate settlementDate;
+    private String settlementDate;
 
     // Many-to-One relationship with WbOrderGroup
     @ManyToOne(fetch = FetchType.LAZY)

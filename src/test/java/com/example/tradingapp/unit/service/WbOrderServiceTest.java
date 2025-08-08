@@ -42,7 +42,7 @@ class WbOrderServiceTest {
         requestDto.setCreatedDate(LocalDate.now());
         requestDto.setReceiveTime(LocalDateTime.now());
         requestDto.setSecurityCode("AAPL");
-        requestDto.setSettlementDate(LocalDate.now());
+        requestDto.setSettlementDate("2024-01-17");
         entity = new WbOrder();
         entity.setId(1L);
         responseDto = new WbOrderResponseDto();

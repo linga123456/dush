@@ -46,9 +46,9 @@ class WbShortNeedServiceTest {
         requestDto.setCreatedDate(LocalDate.of(2024, 1, 15));
         requestDto.setReceiveTime(LocalDateTime.of(2024, 1, 15, 10, 30));
         requestDto.setSecurityCode("AAPL");
-        requestDto.setSettlementDate(LocalDate.of(2024, 1, 17));
+        requestDto.setSettlementDate("2024-01-17");
         requestDto.setNeedType("SHORT");
-        requestDto.setRunTime(LocalDateTime.of(2024, 1, 15, 10, 30));
+        requestDto.setRunTime("2024-01-15T10:30:00");
         requestDto.setPartialFlag("Y");
         requestDto.setIsNewVersion("N");
         requestDto.setQuantity(new BigDecimal("1000.00"));
@@ -60,9 +60,9 @@ class WbShortNeedServiceTest {
         entity.setCreatedDate(LocalDate.of(2024, 1, 15));
         entity.setReceiveTime(LocalDateTime.of(2024, 1, 15, 10, 30));
         entity.setSecurityCode("AAPL");
-        entity.setSettlementDate(LocalDate.of(2024, 1, 17));
+        entity.setSettlementDate("2024-01-17");
         entity.setNeedType("SHORT");
-        entity.setRunTime(LocalDateTime.of(2024, 1, 15, 10, 30));
+        entity.setRunTime("2024-01-15T10:30:00");
         entity.setPartialFlag("Y");
         entity.setIsNewVersion("N");
         entity.setQuantity(new BigDecimal("1000.00"));
@@ -74,9 +74,9 @@ class WbShortNeedServiceTest {
         responseDto.setCreatedDate(LocalDate.of(2024, 1, 15));
         responseDto.setReceiveTime(LocalDateTime.of(2024, 1, 15, 10, 30));
         responseDto.setSecurityCode("AAPL");
-        responseDto.setSettlementDate(LocalDate.of(2024, 1, 17));
+        responseDto.setSettlementDate("2024-01-17");
         responseDto.setNeedType("SHORT");
-        responseDto.setRunTime(LocalDateTime.of(2024, 1, 15, 10, 30));
+        responseDto.setRunTime("2024-01-15T10:30:00");
         responseDto.setPartialFlag("Y");
         responseDto.setIsNewVersion("N");
         responseDto.setQuantity(new BigDecimal("1000.00"));

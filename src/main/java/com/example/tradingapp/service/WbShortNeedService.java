@@ -14,7 +14,7 @@ public interface WbShortNeedService {
     WbShortNeedResponseDto getWbShortNeedById(Long id);
 
     WbShortNeedResponseDto getWbShortNeedByCompositeKey(LocalDate createdDate, LocalDateTime receiveTime, 
-                                                       String securityCode, LocalDate settlementDate);
+                                                       String securityCode, String settlementDate);
 
     List<WbShortNeedResponseDto> getAllWbShortNeeds();
 
@@ -22,7 +22,7 @@ public interface WbShortNeedService {
 
     List<WbShortNeedResponseDto> getWbShortNeedsByCreatedDate(LocalDate createdDate);
 
-    List<WbShortNeedResponseDto> getWbShortNeedsBySettlementDate(LocalDate settlementDate);
+    List<WbShortNeedResponseDto> getWbShortNeedsBySettlementDate(String settlementDate);
 
     List<WbShortNeedResponseDto> getWbShortNeedsByNeedType(String needType);
 

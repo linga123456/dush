@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,7 +38,7 @@ public class WbShortNeedController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate createdDate,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime receiveTime,
             @RequestParam String securityCode,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate settlementDate) {
+            @RequestParam String settlementDate) {
         WbShortNeedResponseDto response = wbShortNeedService.getWbShortNeedByCompositeKey(
                 createdDate, receiveTime, securityCode, settlementDate);
         return ResponseEntity.ok(response);
@@ -65,7 +65,7 @@ public class WbShortNeedController {
 
     @GetMapping("/settlement-date/{settlementDate}")
     public ResponseEntity<List<WbShortNeedResponseDto>> getWbShortNeedsBySettlementDate(
-            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate settlementDate) {
+            @PathVariable String settlementDate) {
         List<WbShortNeedResponseDto> response = wbShortNeedService.getWbShortNeedsBySettlementDate(settlementDate);
         return ResponseEntity.ok(response);
     }

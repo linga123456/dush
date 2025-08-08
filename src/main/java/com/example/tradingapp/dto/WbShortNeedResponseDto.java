@@ -17,9 +17,9 @@ public class WbShortNeedResponseDto {
     private LocalDate createdDate;
     private LocalDateTime receiveTime;
     private String securityCode;
-    private LocalDate settlementDate;
+    private String settlementDate;
     private String needType;
-    private LocalDateTime runTime;
+    private String runTime;
     private String partialFlag;
     private String isNewVersion;
     private BigDecimal quantity;

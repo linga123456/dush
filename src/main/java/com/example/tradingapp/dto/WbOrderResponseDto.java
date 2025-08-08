@@ -18,5 +18,5 @@ public class WbOrderResponseDto {
     private LocalDate createdDate;
     private LocalDateTime receiveTime;
     private String securityCode;
-    private LocalDate settlementDate;
+    private String settlementDate;
 } 

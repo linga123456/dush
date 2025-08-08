@@ -19,14 +19,14 @@ public interface WbShortNeedRepository extends JpaRepository<WbShortNeed, Long> 
             @Param("createdDate") LocalDate createdDate,
             @Param("receiveTime") LocalDateTime receiveTime,
             @Param("securityCode") String securityCode,
-            @Param("settlementDate") LocalDate settlementDate
+            @Param("settlementDate") String settlementDate
     );
 
     List<WbShortNeed> findBySecurityCode(String securityCode);
 
     List<WbShortNeed> findByCreatedDate(LocalDate createdDate);
 
-    List<WbShortNeed> findBySettlementDate(LocalDate settlementDate);
+    List<WbShortNeed> findBySettlementDate(String settlementDate);
 
     List<WbShortNeed> findByNeedType(String needType);
 } 

@@ -63,9 +63,9 @@ class WbShortNeedIntegrationTest {
         dto.setCreatedDate(LocalDate.of(2024, 1, 15));
         dto.setReceiveTime(LocalDateTime.of(2024, 1, 15, 10, 30));
         dto.setSecurityCode("AAPL");
-        dto.setSettlementDate(LocalDate.of(2024, 1, 17));
+        dto.setSettlementDate("2024-01-17");
         dto.setNeedType("SHORT");
-        dto.setRunTime(LocalDateTime.of(2024, 1, 15, 10, 30));
+        dto.setRunTime("2024-01-15T10:30:00");
         dto.setPartialFlag("Y");
         dto.setIsNewVersion("N");
         dto.setQuantity(new BigDecimal("1000.00"));

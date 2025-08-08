@@ -40,7 +40,7 @@ public class WbShortNeedServiceImpl implements WbShortNeedService {
     @Override
     @Transactional(readOnly = true)
     public WbShortNeedResponseDto getWbShortNeedByCompositeKey(LocalDate createdDate, LocalDateTime receiveTime, 
-                                                             String securityCode, LocalDate settlementDate) {
+                                                             String securityCode, String settlementDate) {
         WbShortNeed wbShortNeed = wbShortNeedRepository.findByCompositeKey(createdDate, receiveTime, securityCode, settlementDate)
                 .orElseThrow(() -> new RuntimeException("WbShortNeed not found with composite key"));
         return wbShortNeedMapper.toDto(wbShortNeed);
@@ -69,7 +69,7 @@ public class WbShortNeedServiceImpl implements WbShortNeedService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<WbShortNeedResponseDto> getWbShortNeedsBySettlementDate(LocalDate settlementDate) {
+    public List<WbShortNeedResponseDto> getWbShortNeedsBySettlementDate(String settlementDate) {
         List<WbShortNeed> wbShortNeeds = wbShortNeedRepository.findBySettlementDate(settlementDate);
         return wbShortNeedMapper.toDtoList(wbShortNeeds);
     }
